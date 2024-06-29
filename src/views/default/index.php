@@ -15,8 +15,6 @@ $this->registerCss('canvas {width: 100% !important;height: 400px;}');
 ?>
 <div class="audit-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <h2><?php echo Html::a(Yii::t('audit', 'Entries'), ['entry/index']); ?></h2>

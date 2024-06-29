@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="audit-trail">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
