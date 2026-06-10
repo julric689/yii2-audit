@@ -33,11 +33,14 @@ trait RendersSummaryChartTrait
      */
     protected function getChartData()
     {
-        //initialise defaults (0 entries) for each day
-        $defaults = [];
+        static $frDays = ['Mon' => 'Lun', 'Tue' => 'Mar', 'Wed' => 'Mer', 'Thu' => 'Jeu', 'Fri' => 'Ven', 'Sat' => 'Sam', 'Sun' => 'Dim'];
+
+        $defaults  = [];
         $startDate = strtotime('-6 days');
         foreach (range(-6, 0) as $day) {
-            $defaults[date('D: Y-m-d', strtotime($day . 'days'))] = 0;
+            $ts    = strtotime($day . ' days');
+            $label = $frDays[date('D', $ts)] . '. ' . date('d/m', $ts);
+            $defaults[$label] = 0;
         }
 
         $panelModel = $this->getChartModel();
@@ -48,10 +51,12 @@ trait RendersSummaryChartTrait
                 date('Y-m-d 23:59:59')])
             ->groupBy("created")->indexBy('day')->column();
 
-        // replace defaults with data from db where available
         foreach ($results as $date => $count) {
-            $date = date('D: Y-m-d', strtotime($date));
-            $defaults[$date] += $count;
+            $ts    = strtotime($date);
+            $label = $frDays[date('D', $ts)] . '. ' . date('d/m', $ts);
+            if (isset($defaults[$label])) {
+                $defaults[$label] += $count;
+            }
         }
         return $defaults;
     }
