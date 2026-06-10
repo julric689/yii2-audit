@@ -35,7 +35,7 @@ $this->registerJs(<<<JS
             },
             scales: {
                 x: { ticks: { font: { size: 10 }, color: '#6b7280' }, grid: { display: false } },
-                y: { beginAtZero: true, ticks: { precision: 0, font: { size: 10 }, color: '#6b7280' } }
+                y: { min: 0, suggestedMax: 1, ticks: { precision: 0, font: { size: 10 }, color: '#6b7280' } }
             }
         }
     });

@@ -97,7 +97,7 @@ $this->registerJs(<<<JS
             },
             scales: {
                 x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#6b7280', font: { size: 11 } } },
-                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#6b7280', font: { size: 11 }, precision: 0 } }
+                y: { min: 0, suggestedMax: 1, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#6b7280', font: { size: 11 }, precision: 0 } }
             }
         }
     });
@@ -123,7 +123,7 @@ JS);
             <div class="audit-stat-card bg-trails">
                 <div>
                     <div class="stat-value"><?= $stats['trails_total'] ?></div>
-                    <div class="stat-label">Trails</div>
+                    <div class="stat-label">Modifications</div>
                     <div class="stat-week">+<?= $stats['trails_week'] ?> cette semaine</div>
                 </div>
                 <div class="stat-icon">&#9998;</div>
