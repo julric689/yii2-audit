@@ -165,22 +165,28 @@ JS);
 
     <!-- Panel mini-charts -->
     <?php
-    $panels = array_filter(Audit::getInstance()->panels, function ($p) { return (bool)$p->getChart(); });
-    $panels = array_values($panels);
-    $count  = count($panels);
+    // Pre-render each panel chart once to avoid double uniqid() mismatch
+    $panelCharts = [];
+    foreach (Audit::getInstance()->panels as $panel) {
+        $html = $panel->getChart();
+        if ($html) {
+            $panelCharts[] = ['panel' => $panel, 'html' => $html];
+        }
+    }
+    $count = count($panelCharts);
     if ($count > 0):
         $colClass = $count >= 4 ? 'col-sm-6 col-md-3' : ($count === 3 ? 'col-sm-6 col-md-4' : 'col-sm-6 col-md-6');
     ?>
     <div class="row">
-        <?php foreach ($panels as $panel): ?>
-        <?php /** @var Panel $panel */ ?>
+        <?php foreach ($panelCharts as $item): ?>
+        <?php /** @var Panel $item['panel'] */ ?>
         <div class="<?= $colClass ?>">
             <div class="audit-chart-card panel-mini-chart">
                 <h4><?php
-                    $url = $panel->getIndexUrl();
-                    echo $url ? Html::a($panel->getName(), $url) : $panel->getName();
+                    $url = $item['panel']->getIndexUrl();
+                    echo $url ? Html::a($item['panel']->getName(), $url) : $item['panel']->getName();
                 ?></h4>
-                <?= $panel->getChart() ?>
+                <?= $item['html'] ?>
             </div>
         </div>
         <?php endforeach; ?>
