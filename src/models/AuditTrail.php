@@ -65,7 +65,7 @@ class AuditTrail extends ActiveRecord
         // Check if data a string. Only if it is string, json decode will work correctly
         if (is_string($value)) {
             // Decode the value and ensure output is an array so we can check its type consistently
-            $data = json_decode($value, JSON_OBJECT_AS_ARRAY);
+            $data = json_decode($value, true);
             if (is_array($data)) {
                 // Pretty print json by flag for json_encode and ensure line breaks by using print_r
                 return print_r(json_encode($data, JSON_PRETTY_PRINT), true);

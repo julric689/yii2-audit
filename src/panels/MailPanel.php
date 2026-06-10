@@ -52,6 +52,9 @@ class MailPanel extends Panel
         /* @var $message MessageInterface */
         $message = $event->message;
         $entry = Audit::getInstance()->getEntry(true);
+        if ($entry === null) {
+            return;
+        }
 
         $mail = new AuditMail();
         $mail->entry_id = $entry->id;
