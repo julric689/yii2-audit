@@ -43,6 +43,6 @@ $this->registerJs(<<<JS
 })();
 JS);
 ?>
-<div style="position:relative; height:140px;">
+<div style="position:relative; height:260px;">
     <canvas id="<?= $id ?>"></canvas>
 </div>

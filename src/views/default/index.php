@@ -175,7 +175,7 @@ JS);
     }
     $count = count($panelCharts);
     if ($count > 0):
-        $colClass = $count >= 4 ? 'col-sm-6 col-md-3' : ($count === 3 ? 'col-sm-6 col-md-4' : 'col-sm-6 col-md-6');
+        $colClass = 'col-md-12';
     ?>
     <div class="row">
         <?php foreach ($panelCharts as $item): ?>
