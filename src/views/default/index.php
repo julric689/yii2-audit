@@ -49,7 +49,7 @@ $this->registerCss('
 }
 .audit-chart-card h4 a { color: #374151; }
 .audit-chart-card h4 a:hover { color: #3b82f6; }
-.panel-mini-chart canvas { max-height: 160px; }
+.panel-mini-chart canvas { display: block; }
 ');
 
 $labels     = Json::encode(array_keys($chartData));
