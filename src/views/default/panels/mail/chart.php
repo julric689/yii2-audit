@@ -34,7 +34,7 @@ $this->registerJs(<<<JS
                 tooltip: { enabled: true, callbacks: { label: function(c) { return ' ' + c.parsed.y + ' mail(s)'; } } }
             },
             scales: {
-                x: { ticks: { font: { size: 10 }, color: '#6b7280' }, grid: { display: false } },
+                x: { ticks: { font: { size: 10 }, color: '#6b7280', autoSkip: false, maxRotation: 30 }, grid: { display: false } },
                 y: { min: 0, suggestedMax: 1, ticks: { precision: 0, font: { size: 10 }, color: '#6b7280' } }
             }
         }
